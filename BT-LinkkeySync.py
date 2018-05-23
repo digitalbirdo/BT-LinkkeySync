@@ -62,18 +62,18 @@ for adapter in pl["SMPDistributionKeys"].keys():
 		
 		# Lonk-Term Key (LTK)
 		# 128-bit key used to generate the session key for an encrypted connection.
-		dev += '\r\n"LTK"=hex:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["LTK"].data.encode("hex"))
+		dev += '\r\n"LTK"=hex:'+ pl["SMPDistributionKeys"][adapter][device]["LTK"].data.encode("hex")
 		
 		#dev += '\r"KeyLength"=dword:00000000' # Don't know why this is zero when i pair my BT LE Mouse with windows.
 		dev += '\r\n"KeyLength"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["LTKLength"].data.encode("hex").rjust(8,'0')
 
 		# Random Number (RAND):
 		# 64-bit stored value used to identify the LTK. A new RAND is generated each time a unique LTK is distributed.
-		dev += '\r\n"ERand"=hex(b):'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["RAND"].data.encode("hex"))
+		dev += '\r\n"ERand"=hex(b):'+ pl["SMPDistributionKeys"][adapter][device]["RAND"].data.encode("hex")
 
 		# Encrypted Diversifier (EDIV)
 		# 16-bit stored value used to identify the LTK. A new EDIV is generated each time a new LTK is distributed.
-		dev += '\r\n"EDIV"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["EDIV"].data.encode("hex").rjust(8,'0')
+		dev += '\r\n"EDIV"=dword:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["EDIV"].data.encode("hex").rjust(8,'0'))
 
 		# Identity Resolving Key (IRK)
 		# 128-bit key used to generate and resolve random address.

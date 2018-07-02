@@ -8,13 +8,10 @@ It generates a registry file for windows on macOS, which can afterwards be impor
 2. Mark the script as executable with `sudo chmod +x BT-Linkkeysync.py`
 3. Run the script with `sudo ./BT-Linkkeysync.py`(you will be asked for your password)
 4. Store the generated file `btkeys.reg` file to a location accessible by windows.
-5. Download [psexec](https://docs.microsoft.com/en-us/sysinternals/downloads/psexec)
-   and store it to `C:/Windows/System32/`
-6. Run the command:
-   `psexec -s -i regedit`
-7. Import the file `btkeys.reg`
-8. No need to reboot
-9. Use your keyboard on macOS and Windows
+5. Open the Windows registry editor with `Windows + R` and type `regedit` into the text input.
+6. Import the file `btkeys.reg`
+7. No need to reboot
+8. Use your keyboard on macOS and Windows
 
 ## Information
 Test Environment:

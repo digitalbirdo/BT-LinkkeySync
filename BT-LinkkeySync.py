@@ -12,7 +12,7 @@ print("---------------------------------")
 # file where the registry info shall be stored
 filename = 'btkeys.reg'
 
-highSierraLoc = False # change to true if running high sierra
+highSierraLoc = False # change to True if running high sierra
 
 print("> get Bluetooth Link Keys from macOS and store it to blued.plist")
 if not highSierraLoc:

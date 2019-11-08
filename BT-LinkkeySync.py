@@ -12,10 +12,10 @@ print("---------------------------------")
 # file where the registry info shall be stored
 filename = 'btkeys.reg'
 
-highSierraLoc = False # change to True if running high sierra
+highSierraLaterLoc = True # change to True if running high sierra and mojave and catalina
 
 print("> get Bluetooth Link Keys from macOS and store it to blued.plist")
-if not highSierraLoc:
+if not highSierraLaterLoc:
 	output = subprocess.check_output("sudo defaults export /private/var/root/Library/Preferences/blued.plist ./blued.plist", shell=True)
 else:
 	output = subprocess.check_output("sudo defaults export /private/var/root/Library/Preferences/com.apple.bluetoothd.plist ./blued.plist", shell=True)

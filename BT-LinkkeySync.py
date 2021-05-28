@@ -49,7 +49,7 @@ if "LinkKeys" in pl:
 
 		# loop over all available devices of this adapter
 		for device in pl["LinkKeys"][adapter].keys():
-			f.write('\r\n"'+device.replace("-","")+'"=hex:'+ convertToWinRep(pl["LinkKeys"][adapter][device].data.hex()))
+			f.write('\r\n"'+device.replace("-","")+'"=hex:'+ convertToWinRep(pl["LinkKeys"][adapter][device].data.encode('hex')))
 else:
 	print("No Bluetooth 2.0 information available")
 
@@ -65,26 +65,26 @@ if "SMPDistributionKeys" in pl:
 			
 			# Lonk-Term Key (LTK)
 			# 128-bit key used to generate the session key for an encrypted connection.
-			dev += '\r\n"LTK"=hex:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["LTK"].data.hex())
+			dev += '\r\n"LTK"=hex:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["LTK"].data.encode('hex'))
 			
 			#dev += '\r"KeyLength"=dword:00000000' # Don't know why this is zero when i pair my BT LE Mouse with windows.
-			dev += '\r\n"KeyLength"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["LTKLength"].data.hex().rjust(8,'0')
+			dev += '\r\n"KeyLength"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["LTKLength"].data.encode('hex').rjust(8,'0')
 
 			# Random Number (RAND):
 			# 64-bit stored value used to identify the LTK. A new RAND is generated each time a unique LTK is distributed.
-			dev += '\r\n"ERand"=hex(b):'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["RAND"].data.hex())
+			dev += '\r\n"ERand"=hex(b):'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["RAND"].data.encode('hex'))
 
 			# Encrypted Diversifier (EDIV)
 			# 16-bit stored value used to identify the LTK. A new EDIV is generated each time a new LTK is distributed.
-			dev += '\r\n"EDIV"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["EDIV"].data.hex().rjust(8,'0')
+			dev += '\r\n"EDIV"=dword:'+ pl["SMPDistributionKeys"][adapter][device]["EDIV"].data.encode('hex').rjust(8,'0')
 
 			# Identity Resolving Key (IRK)
 			# 128-bit key used to generate and resolve random address.
-			dev += '\r\n"IRK"=hex:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["IRK"].data.hex())
+			dev += '\r\n"IRK"=hex:'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["IRK"].data.encode('hex'))
 
 			# Device Address
 			# 48-bit Address of the connected device
-			dev += '\r\n"Address"=hex(b):'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["Address"].data.hex().rjust(16,'0'))
+			dev += '\r\n"Address"=hex(b):'+ convertToWinRep(pl["SMPDistributionKeys"][adapter][device]["Address"].data.encode('hex').rjust(16,'0'))
 
 			# Don't know whats that, i'm using an Logitech MX Master, and this is written to the registry when i pair it to windows
 			dev += '\r\n"AddressType"=dword:00000001'

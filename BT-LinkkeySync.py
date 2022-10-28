@@ -18,7 +18,7 @@ print("> get Bluetooth Link Keys from macOS and store it to blued.plist")
 if not highSierraLoc:
 	output = subprocess.check_output("sudo defaults export /private/var/root/Library/Preferences/blued.plist ./blued.plist", shell=True)
 else:
-	output = subprocess.check_output("sudo defaults export /private/var/root/Library/Preferences/com.apple.bluetoothd.plist ./blued.plist", shell=True)
+	output = subprocesss.check_output("sudo defaults export /private/var/root/Library/Preferences/com.apple.bluetoothd.plist ./blued.plist", shell=True)
 
 print("> convert exported list from binary to xml")
 output = subprocess.check_output("sudo plutil -convert xml1 ./blued.plist", shell=True)

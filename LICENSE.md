@@ -1,4 +1,4 @@
-MIT License
+MIT Licenser
 
 Copyright (c) 2016 Tobias Finke
 
